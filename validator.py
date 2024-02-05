@@ -18,10 +18,10 @@ def validator(example, target):
     issues=[]
     for k,v in example_json.items():
         if k not in target_json.keys():
-            issues.append(f'Key Error, {k} not found in {target}')
+            issues.append(dict(key_error=f'{k} not found in {target}'))
             break
         if type(target_json[k])!=type(v):
-            issues.append(f'Value Error, {k} data type ({type(target_json[k]).__name__}) does not match expected datatype of {type(v).__name__}')
+            issues.append(dict(Value_Error=f'{k} data type ({type(target_json[k]).__name__}) does not match expected datatype of ({type(v).__name__})'))
     print(issues)
     if issues:
         raise Exception(f'Issues were found {issues}')

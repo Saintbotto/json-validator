@@ -1,0 +1,6 @@
+{
+    "name":"Hello",
+    "location":"Here",
+    "this_is_a_number":2,
+    "this_is_not_a_number":"three"
+}

@@ -5,13 +5,11 @@ __path__=os.path.dirname(__file__)
 def validator(example, target):
     def load_json(json_object,type):
         try:
-            print(os.path.join(__path__,json_object))
             with open(os.path.join(__path__,json_object)) as f:
                 return json.loads(f.read())
                 
         except Exception as e:
-            print(f'Your {type} does not load')
-            raise e
+            raise Exception(f'{json_object} File Format is incorrect, please check to make sure your json is properly formatted')
 
     example_json= load_json(example,'Example')
     target_json= load_json(target,'Target')
@@ -22,7 +20,6 @@ def validator(example, target):
             break
         if type(target_json[k])!=type(v):
             issues.append(dict(Value_Error=f'{k} data type ({type(target_json[k]).__name__}) does not match expected datatype of ({type(v).__name__})'))
-    print(issues)
     if issues:
         raise Exception(f'Issues were found {issues}')
 if __name__=='__main__':
